@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>⭐Kenya21⭐</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      width: 100vw;
+      background: #f3e8ff;
+      font-family: 'Pangolin', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      position: relative;
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .envelope {
+      position: relative;
+      background: #a678d1;
+      height: 30vmin;
+      width: 48vmin;
+    }
+
+    .cover {
+      position: absolute;
+      height: 0;
+      width: 0;
+      border-bottom: 15vmin solid #b892dc;
+      border-left: 24vmin solid transparent;
+      border-right: 24vmin solid transparent;
+      top: 15vmin;
+      z-index: 3;
+    }
+
+    .cover::after {
+      position: absolute;
+      content: '';
+      border-left: 24.5vmin solid #cfb7f7;
+      border-bottom: 15vmin solid transparent;
+      border-top: 15vmin solid transparent;
+      top: -15vmin;
+      left: -24vmin;
+    }
+
+    .cover::before {
+      position: absolute;
+      content: '';
+      border-right: 24.5vmin solid #cfb7f7;
+      border-bottom: 15vmin solid transparent;
+      border-top: 15vmin solid transparent;
+      top: -15vmin;
+      left: -0.5vmin;
+    }
+
+    .lid {
+      position: absolute;
+      height: 0;
+      width: 0;
+      border-top: 15vmin solid #9f6fe8;
+      border-left: 24vmin solid transparent;
+      border-right: 24vmin solid transparent;
+      top: 0;
+      transform-origin: top;
+      animation: open-rev 2s;
+    }
+
+    .container.open .lid {
+      animation: open 0.5s forwards;
+    }
+
+    /* Animación para el cuadro blanco */
+    .card-content {
+      position: absolute;
+      top: -15vmin;
+      left: -25%;
+      transform: translateX(50%);
+      width: 70vmin;
+      height: 45vmin;
+      background-color: white;
+      border-radius: 1rem;
+      display: none;
+      z-index: 4;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      animation: showContent 2s forwards;
+    }
+
+    .container.open .card-content {
+      display: block;
+    }
+
+    /* Estilo para el texto "PARA KENYA" */
+    .card-content h1 {
+      position: absolute;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #a678d1;
+      font-weight: bold;
+    }
+
+    @keyframes open {
+      100% {
+        transform: rotatex(180deg);
+      }
+    }
+
+    @keyframes open-rev {
+      from {
+        transform: rotatex(-180deg);
+      }
+    }
+
+    @keyframes showContent {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Animación de las abejas */
+    .bee-left, .bee-right {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 15vmin;
+      height: 15vmin;
+      display: none;
+      z-index: 5;
+    }
+
+    .bee-left {
+      left: -20vmin;
+      transform: translateY(-50%) scaleX(-1);
+      animation: moveLeft 2s forwards;
+    }
+
+    .bee-right {
+      right: -20vmin;
+      animation: moveRight 2s forwards;
+    }
+
+    @keyframes moveLeft {
+      0% {
+        transform: translateY(-50%) translateX(0) scaleX(-1);
+      }
+      100% {
+        transform: translateY(-50%) translateX(10vmin) scaleX(-1);
+      }
+    }
+
+    @keyframes moveRight {
+      0% {
+        transform: translateY(-50%) translateX(0);
+      }
+      100% {
+        transform: translateY(-50%) translateX(-10vmin);
+      }
+    }
+
+    /* Estilo para la flor amarilla */
+    .flower {
+      position: absolute;
+      top: -20%;
+      left: 15%;
+      transform: translateX(-50%);
+      width: 35vmin;
+      height: 35vmin;
+      display: none;
+      z-index: 6;
+      opacity: 0;
+      animation: showFlower 0.5s forwards;
+    }
+
+    @keyframes showFlower {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Emoji de corazón */
+    .heart {
+      font-size: 3rem; /* Tamaño más pequeño */
+      color: red;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: none;
+      z-index: 7; /* Asegurar que esté por encima de todo */
+    }
+
+    /* FlorB en los lados izquierdo y derecho */
+    .flower-left, .flower-right {
+      position: absolute;
+      top: 80%;
+      transform: translateY(-50%);
+      width: 10vmin;
+      height: 10vmin;
+      display: none;
+      z-index: 6;
+    }
+
+    .flower-left {
+      left: -12vmin;
+      background: url('florB.png') no-repeat center center;
+      background-size: contain;
+      transform: translateY(-50%) scaleX(-1);
+    }
+
+    .flower-right {
+      right: -12vmin;
+      background: url('florB.png') no-repeat center center;
+      background-size: contain;
+    }
+
+    button {
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      font-family: 'Pangolin', cursive;
+      font-size: 1.2rem;
+      background-color: #9f6fe8;
+      color: white;
+      border: none;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #7c4fd8;
+    }
+
+    /* Cuadro de "PRESIONAR" */
+    .press-box {
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      font-family: 'Pangolin', cursive;
+      font-size: 1.2rem;
+      background-color: #9f6fe8;
+      color: white;
+      border: none;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      display: none;
+    }
+
+    .press-box:hover {
+      background-color: #7c4fd8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="cardContainer">
+    <div class="envelope"></div>
+    <div class="cover"></div>
+    <div class="lid"></div>
+    <div class="card-content">
+      <h1>⭐PARA KENYA⭐</h1>
+    </div>
+
+    <img class="bee-left" src="abeja.gif" alt="Bee Left" />
+    <img class="bee-right" src="abeja.gif" alt="Bee Right" />
+    <img class="flower" src="florA.png" alt="Flor Amarilla" />
+    <div class="heart" id="heartEmoji">❤️</div> <!-- Emoji de corazón -->
+
+    <!-- FlorB en los lados izquierdo y derecho -->
+    <div class="flower-left"></div>
+    <div class="flower-right"></div>
+  </div>
+
+  <button id="toggleButton" onclick="toggleCard()">Abrir Carta 🌼</button>
+  <button id="pressButton" class="press-box" onclick="showPopup()">Presionar</button>
+
+  <audio id="audio" src="poke.mp3" preload="auto"></audio> <!-- Añadir audio -->
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+  <script>
+    function toggleCard() {
+      const container = document.getElementById('cardContainer');
+      const button = document.getElementById('toggleButton');
+      const beeLeft = document.querySelector('.bee-left');
+      const beeRight = document.querySelector('.bee-right');
+      const flower = document.querySelector('.flower');
+      const cardContent = document.querySelector('.card-content');
+      const pressButton = document.getElementById('pressButton');
+      const heartEmoji = document.getElementById('heartEmoji');
+      const flowerLeft = document.querySelector('.flower-left');
+      const flowerRight = document.querySelector('.flower-right');
+      const audio = document.getElementById('audio');
+
+      container.classList.toggle('open');
+
+      if (container.classList.contains('open')) {
+        button.innerHTML = 'Cerrar :3 🌼';
+        beeLeft.style.display = 'block';
+        beeRight.style.display = 'block';
+        flower.style.display = 'none';
+        pressButton.style.display = 'block';  // Mostrar el botón "Presionar"
+        heartEmoji.style.display = 'none';  // Ocultar el corazón al abrir la carta
+        flowerLeft.style.display = 'none';  // Ocultar las flores B cuando se abre la carta
+        flowerRight.style.display = 'none';
+
+        audio.play(); // Reproducir música
+
+        cardContent.addEventListener('animationstart', () => {
+          setTimeout(() => {
+            flower.style.display = 'block'; // Mostrar flor amarilla a la mitad de la animación
+          }, 1000);  // 1000ms es la mitad de 2 segundos
+        });
+
+        // Fuegos artificiales
+        var count = 200;
+        var defaults = { origin: { y: 0.7 } };
+
+        function fire(particleRatio, opts) {
+          confetti({
+            ...defaults,
+            ...opts,
+            particleCount: Math.floor(count * particleRatio)
+          });
+        }
+
+        fire(0.25, {
+          spread: 26,
+          startVelocity: 55,
+        });
+        fire(0.2, {
+          spread: 60,
+        });
+        fire(0.35, {
+          spread: 100,
+          decay: 0.91,
+          scalar: 0.8
+        });
+        fire(0.1, {
+          spread: 120,
+          startVelocity: 25,
+          decay: 0.92,
+          scalar: 1.2
+        });
+        fire(0.1, {
+          spread: 120,
+          startVelocity: 45,
+        });
+      } else {
+        button.innerHTML = 'Abrir Carta 🌼';
+        beeLeft.style.display = 'none';
+        beeRight.style.display = 'none';
+        flower.style.display = 'none';
+        pressButton.style.display = 'none'; // Ocultar el botón "Presionar"
+        heartEmoji.style.display = 'block';  // Mostrar el corazón cuando se cierre
+        flowerLeft.style.display = 'block'; // Mostrar las flores B al cerrar la carta
+        flowerRight.style.display = 'block';
+
+        // Detener la música
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    }
+
+    function showPopup() {
+      alert("🌸🌻Flores amarillas y de colores para ti.🌻🌸");
+    }
+  </script>
+
+</body>
+</html>
